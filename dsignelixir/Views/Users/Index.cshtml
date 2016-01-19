@@ -1,0 +1,95 @@
+@model IEnumerable<dsignelixir.Models.User>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th></th>
+        <th>
+            PasswordHash
+        </th>
+        <th>
+            PasswordSalt
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Comment
+        </th>
+        <th>
+            IsApproved
+        </th>
+        <th>
+            DateCreated
+        </th>
+        <th>
+            DateLastLogin
+        </th>
+        <th>
+            DateLastActivity
+        </th>
+        <th>
+            DateLastPasswordChange
+        </th>
+        <th>
+            FullName
+        </th>
+        <th>
+            Roles
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.UserName }) |
+            @Html.ActionLink("Details", "Details", new { id=item.UserName }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.UserName })
+        </td>
+        <td>
+			@Html.DisplayTextFor(_ => item.PasswordHash).ToString()
+        </td>
+        <td>
+			@Html.DisplayTextFor(_ => item.PasswordSalt).ToString()
+        </td>
+        <td>
+			@item.Email
+        </td>
+        <td>
+			@item.Comment
+        </td>
+        <td>
+			@item.IsApproved
+        </td>
+        <td>
+			@String.Format("{0:g}", item.DateCreated)
+        </td>
+        <td>
+			@String.Format("{0:g}", item.DateLastLogin)
+        </td>
+        <td>
+			@String.Format("{0:g}", item.DateLastActivity)
+        </td>
+        <td>
+			@String.Format("{0:g}", item.DateLastPasswordChange)
+        </td>
+        <td>
+			@item.FullName
+        </td>
+        <td>
+			@(item.Roles == null ? "None" : item.Roles.Count.ToString())
+        </td>
+    </tr>
+}
+
+</table>
+
+

@@ -1,0 +1,86 @@
+@model IEnumerable<dsignelixir.Models.Album>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    select {
+        width: 60px !important;
+    }
+
+</style>
+
+<p>
+    @Html.ActionLink("Create New", "Create", null,  new { @class="fancybutton" })
+</p>
+
+
+@foreach (var g in Model.GroupBy(x => x.CategoryId)) {
+    <div class="three-thirds">
+    <h2>@g.First().Category.Name</h2>
+        <table class="dataTable">
+            <thead>
+            <tr>
+                <th>
+                    Order
+                </th>
+                <th>
+                    Name
+                </th>
+                
+                @*<th>
+                    OrderNumber
+                </th>
+        *@
+                <th>
+                    Images
+                </th>
+        <th></th>
+            </tr>
+                </thead>  <tbody>
+            @foreach (var item in g)
+            {
+
+    
+                <tr id="@item.Id">
+                      <td>
+                        @item.OrderNumber
+                    </td>
+                    <td>
+                        @item.Description
+                    </td>
+                    
+                  
+       
+                    <td>
+                        @(item.Images == null ? "None" : item.Images.Count.ToString())
+                    </td>
+      <td>
+                        @Html.ActionLink("Edit Basic Info", "Edit", new { id=item.Id }) |
+                        @Html.ActionLink("Images", "Details", new { id=item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+                    </td>
+                </tr>
+            }
+        </tbody></table></div>
+}
+
+
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.dataTable').dataTable(
+                {
+                    "bJQueryUI": true,
+                    "bPaginate": false,
+                    "bLengthChange": false,
+                    "bFilter": false,
+                    "bSort": true,
+                    "bInfo": false,
+                }).rowReordering({ sURL: "/Albums/UpdateOrder" });
+        });
+</script>
+}

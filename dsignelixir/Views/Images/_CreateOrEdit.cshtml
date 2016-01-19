@@ -1,0 +1,41 @@
+@using dsignelixir.Models
+@model dsignelixir.Models.Image
+
+@* This partial view defines form fields that will appear when creating and editing entities *@
+
+<div class="editor-label">
+    File:
+</div>
+<div class="editor-field">
+    <input type="file" id="fileBase" name="fileBase"/>
+</div>
+
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Description)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Description)
+    @Html.ValidationMessageFor(model => model.Description)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.OrderNumber)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.OrderNumber)
+    @Html.ValidationMessageFor(model => model.OrderNumber)
+</div>
+
+<div class="editor-label">
+    Album
+</div>
+<div class="editor-field">
+    @Html.DropDownListFor(model => model.AlbumId, ((IEnumerable<Album>)ViewBag.PossibleAlbums).Select(option => new SelectListItem {
+        Text = (option == null ? "None" : option.Name), 
+        Value = option.Id.ToString(),
+        Selected = (Model != null) && (option.Id == Model.AlbumId)
+    }), "Choose...")
+    @Html.ValidationMessageFor(model => model.AlbumId)
+</div>
+@Html.HiddenFor(model => model.Path)

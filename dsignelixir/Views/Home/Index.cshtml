@@ -1,0 +1,68 @@
+﻿@model IEnumerable<dsignelixir.Models.Album>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+<div class="three-thirds column">
+
+    <div class="slides-container">
+        <div id="slides">
+        <a href="#" class="slidesjs-previous slidesjs-navigation"><img src="~/Scripts/slides/img/prev.png" class="scale-with-grid" /></a>
+            @foreach (var item in Model)
+            {
+                foreach (var i in item.Images.OrderBy(o=>o.OrderNumber))
+                 {
+                    <img src="@Url.Action("GetImage", "Images", new {id = i.id})" alt="slider" />
+                 }
+            }
+
+            <a href="#" class="slidesjs-next slidesjs-navigation"><img src="~/Scripts/slides/img/fwd.png" class="scale-with-grid" /></a>
+        </div>
+    </div>
+
+    
+</div>
+<div class="sixteen columns" style="text-align: center; top:-60px; position: relative">
+    <div class="three-thirds">
+        <img src="~/Images/custom_design.png" class="scale-with-grid" /><br />
+        <br />
+        <a href="~/Home/TheElixerFixer"><img src="~/Images/the_fixer.png" class="scale-with-grid" /></a>
+    </div>
+    <div style="float: right; left: -260px; position: relative; top: -60px; "><span style="color: #b02d1c;  ">©Dirk Rozich Illustration, LLC.</span><a href="~/" style="padding-left: 40px; position: relative; float: right; color: #fad49c; text-decoration: none">Home</a><a href="http://dirkrozich.com" style="padding-left: 40px; position: relative; float: right; color: #fad49c; text-decoration: none">My Mural Site</a></div>
+        </div>
+@* @{
+        Random random = new Random();
+        var file = random.Next(1, 4) + ".mp3";
+    }
+
+
+@section audio {<audio preload="" src="~/Content/Music/@file"></audio>}*@
+
+@section scripts
+{
+
+    <link href="~/Scripts/slides/slides.css" rel="stylesheet" />
+    <script src="~/Scripts/slides/jquery.slides.min.js"></script>
+    <script>
+        //hide the footer just on this page. 
+        $('.footer').hide();
+        $(function() {
+            $('#slides').slidesjs({
+                width: 1000,
+                height: 500,
+                play: {
+                    active: false,
+                    auto: true,
+                    interval: 6000,
+                    swap: true,
+                    effect: 'fade'
+                },
+                navigation: {
+                    active: false,
+                    
+                },
+            });
+        });
+    </script>
+
+}

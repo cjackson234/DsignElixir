@@ -1,0 +1,57 @@
+﻿@model IEnumerable<dsignelixir.Models.Album>
+
+@{
+    ViewBag.Title = "The Elixir Fixer";
+
+}
+<center><img src="~/Images/efixer.png"class="scale-with-grid" /></center>
+<br />
+
+<div class="four columns">
+    <img src="~/Images/fixer_bottle.png" class="scale-with-grid" />
+</div>
+<div class="twelve columns">
+    <p style="color: #b12e1c; font-size: 20pt; font-style: italic; font-weight: bold">The scuttlebutt <span style="font-style: normal; font-size: 15pt; color: #b12e1c; font-weight: normal">(how great of a word is that?!)...</span></p>
+    <p style="color: #fbd59c">
+        So here's the deal... Hopefully, by now you have perused this site in depth and have experienced all of the wonders of D’sign Elixir (if not, go back and have a peek). After reviewing our portfolios, confidence is beginning to set in and you are now considering sending us a message…but hold on there, Sally!  There's more!
+    </p>
+    <p style="color: #fbd59c">
+   
+    Of course, D’sign Elixir will always provide you with the amazing logos, gorgeous web designs, and the best damn hand painted signs this side of the Mississippi - but are you aware that we also provide completely customized design/marketing packages?  This is where the Elixir Fixer takes flight!  We are not a one trick pony (...more like 7-8 trick pony, but who's counting). The Elixir Fixer is just a term used to label our uncanny ability to fulfill the multiple design needs of a client's growing business.  For example, let’s begin with a client's custom logo. D’sign Elixir produces a top rung design that is used to cultivate a brand or identity.  From there, the new branding is utilized in a business card layout, enhancing a client's professional appearance.  A perfectly tooled and designed website with a fully comprehensible CMS (Content Management System) follows, presenting a slick, professional web presence. Naturally,  in the wake of this creative locomotive, the Elixir Fixer process leads to corporate apparel, company catalogs, product fliers, mailers, advertise designs, ice cream socials, Thursday night bowling league, ...etc., etc.  So, spare just a few more moments and have a quick look at the Elixir Fixer samples below.........Go on, take a swig!
+</div>
+
+@foreach (var item in Model)
+{
+    
+    <div class="eight columns" style="text-align: center">
+        <ul>
+            <li>
+                @*<span>@item.Description</span>*@
+            </li>
+            <li>
+                @if (item.Images.Any())
+                {
+                  
+                    <a class="fancybox"  rel="@item.Id"  href="@Url.Action("GetImage", "Images", new { id = item.Images.OrderBy(o => o.OrderNumber).First().id })">
+                            <img src="~/Images/DEloager.png" data-original="@Url.Action("GetImage", "Albums", new {id = item.Id})" alt="Content Image" class="scale-with-grid" />
+                    </a>
+                    <span class="description">@item.Description</span>
+                    foreach (var i in item.Images.OrderBy(o => o.OrderNumber).Skip(1))
+                    {
+                    <a class="fancybox"  rel="@item.Id"  href="@Url.Action("GetImage", "Images", new { id = i.id })"></a>
+                    }
+                }
+                else
+                {
+                       <img src="~/Images/DEloager.png" data-original="@Url.Action("GetImage", "Albums", new {id = item.Id})" alt="Content Image" class="scale-with-grid" />
+                }
+
+
+            </li>
+        </ul>
+    </div>
+    
+    
+}
+
+

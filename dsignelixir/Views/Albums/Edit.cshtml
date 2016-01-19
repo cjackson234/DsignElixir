@@ -1,0 +1,27 @@
+@model dsignelixir.Models.Album
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm("Edit", "Albums", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Album</legend>
+
+        @Html.HiddenFor(model => model.Id)
+		@Html.Partial("_CreateOrEdit", Model)
+
+        <p>
+            <input type="submit" value="Save" class="fancybutton" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("All Albums", "Index", null,  new { @class="fancybutton" })
+</div>

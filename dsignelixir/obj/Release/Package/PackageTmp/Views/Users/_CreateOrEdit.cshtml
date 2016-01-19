@@ -1,0 +1,68 @@
+@model dsignelixir.Models.User
+
+@* This partial view defines form fields that will appear when creating and editing entities *@
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Email)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Email)
+    @Html.ValidationMessageFor(model => model.Email)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Comment)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Comment)
+    @Html.ValidationMessageFor(model => model.Comment)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.IsApproved)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.IsApproved)
+    @Html.ValidationMessageFor(model => model.IsApproved)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.DateCreated)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.DateCreated)
+    @Html.ValidationMessageFor(model => model.DateCreated)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.DateLastLogin)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.DateLastLogin)
+    @Html.ValidationMessageFor(model => model.DateLastLogin)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.DateLastActivity)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.DateLastActivity)
+    @Html.ValidationMessageFor(model => model.DateLastActivity)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.DateLastPasswordChange)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.DateLastPasswordChange)
+    @Html.ValidationMessageFor(model => model.DateLastPasswordChange)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.FullName)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.FullName)
+    @Html.ValidationMessageFor(model => model.FullName)
+</div>
+

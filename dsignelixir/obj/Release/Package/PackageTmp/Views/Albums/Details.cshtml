@@ -1,0 +1,98 @@
+@model dsignelixir.Models.Album
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<link href="@Url.Content("~/scripts/uploadify/uploadify.css")" rel="stylesheet" type="text/css" />
+<fieldset>
+    <h2>Album: @Model.Description</h2>
+
+   
+</fieldset>
+<p>
+    @Html.ActionLink("Update Basic Info", "Edit", new { id = Model.Id },  new { @class="fancybutton" }) 
+    @Html.ActionLink("All Albums", "Index", null,  new { @class="fancybutton" })  @Html.ActionLink("Refresh", "Details", new { id = Model.Id },  new { @class="fancybutton" })
+</p>
+
+
+    <div class="three-thirds">
+       <div id="uploader">
+
+    <p>You browser doesn't have Flash, Silverlight, Gears, BrowserPlus or HTML5 support.</p>
+
+</div>
+        <table class="dataTable">
+            <thead>
+                <tr>
+                    <th>Order</th>
+                    <th>
+                        Images
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>  <tbody>
+                          @foreach (var item in Model.Images)
+                          {
+
+
+                              <tr id="@item.id">
+                                  <td>@item.OrderNumber</td>
+                                  <td>
+                                      <img src="@Url.Action("GetImage", "Images", new { id = item.id })" alt="Thumb" height="150px" /> 
+                                  </td>
+                                  <td>
+                                      
+                                      
+                                      <a href="#" rel="@item.id" class="delete">Delete</a>
+                                  </td>
+                              </tr>
+                          }
+                      </tbody></table></div>
+
+
+
+@section scripts
+{<link href="~/Scripts/plupload/jquery.ui.plupload/jquery.plupload.queue/css/jquery.plupload.queue.css" rel="stylesheet" />
+    <script src="~/Scripts/plupload/jquery.ui.plupload/plupload.browserplus.js"></script>
+    <script src="~/Scripts/plupload/jquery.ui.plupload/plupload.full.js"></script>
+    <script src="~/Scripts/plupload/jquery.ui.plupload/jquery.plupload.queue/jquery.plupload.queue.js"></script>
+    
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.dataTable').dataTable(
+                {
+                    "bJQueryUI": true,
+                }).rowReordering({ sURL: "/Images/UpdateOrder" });
+        });
+</script>
+
+    <script>
+        
+        $('.delete').bind('click', function () {
+            
+            $.post(
+             "/Albums/QuickDelete/",
+            { Id: $(this).attr('rel') }, function() {
+                location.reload();
+            }
+        );
+        });
+    </script>
+    <script type="text/javascript">
+
+        $("#uploader").pluploadQueue({
+            runtimes: 'html5',
+            url: '@Url.Action("Upload", "Images")' + '/@Model.Id',
+            max_file_size: '5mb',
+            chunk_size: '1mb',
+            unique_names: true,
+            filters: [
+                { title: "", extensions: "doc,docx,xls,xlsx,pdf,jpg,png" }
+            ],
+            multiple_queues: false
+        });
+    </script>
+}

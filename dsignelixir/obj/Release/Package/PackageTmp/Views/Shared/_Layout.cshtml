@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - Dsign Elixer</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="HalfcoreDev.com" />
+    <link href='http://fonts.googleapis.com/css?family=Rye' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Audiowide' rel='stylesheet' type='text/css'>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    @{
+        Html.RenderPartial("_Header");
+    }
+    
+    
+
+    <div style="position: absolute; top: 5px; float: right; right: 480px; ">
+       <a style="color: #b43a3a; text-decoration: none" href="~/">Home</a>
+    </div>
+    <div class="container rpt">
+
+        <div class="sixteen columns">
+            @RenderBody()
+        </div>
+
+        
+    </div>
+    <div class="container">
+        <div class="footer sixteen columns">
+            <div style="text-align: center;" ><a href="https://www.facebook.com/pages/Dsign-Elixir/142009792562837?ref=hl"><img src="~/Images/footer.png" /></a></div>
+            <div style="float: right; left: -380px; position: relative; top: -40px; "><span style="color: #b02d1c;  ">©Dirk Rozich Illustration, LLC.</span><a href="~/" style="padding-left: 40px; position: relative; float: right; color: #fad49c; text-decoration: none">Home</a><a href="http://dirkrozich.com" style="padding-left: 40px; position: relative; float: right; color: #fad49c; text-decoration: none">My Mural Site</a></div>
+        </div>
+    </div>
+
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+@*    <script src="~/Scripts/audiojs/audio.min.js"></script>*@
+    <script src="~/Scripts/jquery-ui-1.10.3.js"></script>
+    <script src="~/Scripts/fancybox/jquery.fancybox.pack.js"></script>
+    <link href="~/Scripts/fancybox/jquery.fancybox-thumbs.css" rel="stylesheet" />
+    <script src="~/Scripts/fancybox/jquery.fancybox-thumbs.js"></script>
+    <link href="~/Scripts/fancybox/jquery.fancybox-buttons.css" rel="stylesheet" />
+    <script src="~/Scripts/fancybox/jquery.fancybox-buttons.js"></script>
+@*    <script src="~/Scripts/audiojs/audio.min.js"></script>*@
+    <link href="~/Scripts/fancybox/jquery.fancybox.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.lazyload.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            @*$('#music').html('@RenderSection("audio", required: false)');
+            audiojs.events.ready(function () {
+                var as = audiojs.createAll();
+            });*@
+          
+       
+            $('.fancybox').fancybox({
+                type: 'image',
+                prevEffect: 'none',
+                nextEffect: 'none',
+                closeBtn: true,
+                helpers: {
+                    title: { type: 'inside' },
+                    //buttons: {},
+                    overlay : {
+                        locked : false
+                    }
+                }
+            });
+            
+            $(".scale-with-grid").lazyload({ effect: "fadeIn" });
+        });
+    </script>
+
+</body>
+</html>

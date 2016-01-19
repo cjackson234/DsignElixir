@@ -1,0 +1,43 @@
+﻿@model IEnumerable<dsignelixir.Models.Album>
+
+@{
+    ViewBag.Title = "Apparel";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<center>
+    <img src="~/Images/apparel.png" /></center>
+<br/>
+@foreach (var item in Model)
+{
+    
+    <div class="five columns" style="text-align: center">
+        <ul>
+            <li>
+                
+            </li>
+            <li >
+                <span style="color:#b12e1c; font-weight: bold; font-family: Times New Roman">@item.Description</span>
+                @if (item.Images.Any())
+                {
+                    <a style="height: 300px; display: block; vertical-align: central; text-align: center" class="fancybox scale-with-grid"  rel="@item.Id"  href="@Url.Action("GetImage", "Images", new {id = item.Images.OrderBy(o=>o.OrderNumber).First().id})">
+                        <img src="~/Images/DEloager.png" data-original="@Url.Action("GetImage", "Albums", new {id = item.Id})" alt="Content Image" class="scale-with-grid" />
+                    </a>
+
+                    foreach (var i in item.Images.OrderBy(o=>o.OrderNumber).Skip(1))
+                    {
+                        <a class="fancybox scale-with-grid"  rel="@item.Id"  href="@Url.Action("GetImage", "Images", new {id = i.id})"></a>
+                    }
+                }
+                else
+                {
+                   <img src="~/Images/DEloager.png" data-original="@Url.Action("GetImage", "Albums", new {id = item.Id})" alt="Content Image" class="scale-with-grid" />
+                }
+
+
+            </li>
+        </ul>
+    </div>
+    
+    
+}

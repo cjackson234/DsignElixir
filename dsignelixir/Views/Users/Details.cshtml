@@ -1,0 +1,50 @@
+@model dsignelixir.Models.User
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>User</legend>
+
+    <div class="display-label">PasswordHash</div>
+    <div class="display-field">@Html.DisplayTextFor(_ => Model.PasswordHash).ToString()</div>
+
+    <div class="display-label">PasswordSalt</div>
+    <div class="display-field">@Html.DisplayTextFor(_ => Model.PasswordSalt).ToString()</div>
+
+    <div class="display-label">Email</div>
+    <div class="display-field">@Model.Email</div>
+
+    <div class="display-label">Comment</div>
+    <div class="display-field">@Model.Comment</div>
+
+    <div class="display-label">IsApproved</div>
+    <div class="display-field">@Model.IsApproved</div>
+
+    <div class="display-label">DateCreated</div>
+    <div class="display-field">@String.Format("{0:g}", Model.DateCreated)</div>
+
+    <div class="display-label">DateLastLogin</div>
+    <div class="display-field">@String.Format("{0:g}", Model.DateLastLogin)</div>
+
+    <div class="display-label">DateLastActivity</div>
+    <div class="display-field">@String.Format("{0:g}", Model.DateLastActivity)</div>
+
+    <div class="display-label">DateLastPasswordChange</div>
+    <div class="display-field">@String.Format("{0:g}", Model.DateLastPasswordChange)</div>
+
+    <div class="display-label">FullName</div>
+    <div class="display-field">@Model.FullName</div>
+
+    <div class="display-label">Roles</div>
+    <div class="display-field">@(Model.Roles == null ? "None" : Model.Roles.Count.ToString())</div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.UserName }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+

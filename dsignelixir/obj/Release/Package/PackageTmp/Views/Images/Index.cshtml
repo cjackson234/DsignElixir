@@ -1,0 +1,47 @@
+@model IEnumerable<dsignelixir.Models.Image>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th></th>
+        <th>
+            Path
+        </th>
+        <th>
+            Description
+        </th>
+        <th>
+            Album
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+        <td>
+			@item.Path
+        </td>
+        <td>
+			@item.Description
+        </td>
+        <td>
+			@(item.Album == null ? "None" : item.Album.Name)
+        </td>
+    </tr>
+}
+
+</table>
+
+

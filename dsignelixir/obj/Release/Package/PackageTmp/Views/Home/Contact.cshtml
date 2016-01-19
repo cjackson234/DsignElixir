@@ -1,0 +1,71 @@
+﻿@model dsignelixir.Models.Contact
+@{
+    ViewBag.Title = "Contact";
+}
+
+    <style type="text/css">
+     fieldset input[type="text"] {
+         border: #251016 3px solid;
+         background-color: #695059;
+         color: white !important;
+         width: 350px;
+         margin-bottom: 0px;
+             
+     }
+     fieldset textarea {
+         border: #251016 3px solid;
+         background-color: #695059;
+         color: white !important;
+         width: 350px;
+         height: 250px;
+     }
+     .editor-label label{color: #fbd59c; font-weight: normal}
+</style>
+
+<div class="three-thirds" >
+    <center><img src="~/Images/getaholdofus.png" class="scale-with-grid" /></center>
+    
+</div>
+<div class="five columns">
+    <img src="~/Images/yee_oldie_phone.png" class="scale-with-grid" />
+</div>
+<div class="eleven columns">
+
+    <div style="float:left; position:relative; z-index: 2">
+        @using (Html.BeginForm()) { 
+            @Html.ValidationSummary(true) 
+            <fieldset> 
+            
+            
+                <div class="editor-field"> 
+                    @Html.TextBoxFor(model => model.Name) 
+                    @Html.ValidationMessageFor(model => model.Name) <br />
+                </div> 
+                <div class="editor-label" style="top:-20px; position: relative"> 
+                    @Html.LabelFor(model => model.Name) 
+                </div> 
+            
+                <div class="editor-field"> 
+                    @Html.TextBoxFor(model => model.Email) 
+                    @Html.ValidationMessageFor(model => model.Email) <br />
+                </div> 
+                <div class="editor-label" style="top:-20px; position: relative"> 
+                    @Html.LabelFor(model => model.Email) 
+                </div> 
+                <br/>
+                <div class="editor-label"> 
+                    <label for="Comment">Your Questions / Comments </label>
+                </div> 
+                <div class="editor-field"> 
+                    @Html.EditorFor(model => model.Comment) <br />
+                    @Html.ValidationMessageFor(model => model.Comment) 
+                </div> 
+                <p style=" cursor:pointer"> 
+                    <button type="submit" style="border: 0; background: transparent">
+                        <img src="~/Images/Submit.png" />
+                    </button> 
+                </p> 
+            </fieldset> 
+        }
+    </div>
+</div>
